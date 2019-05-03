@@ -1,8 +1,8 @@
 {
   "name": "vn-mobile",
   "description": "a set of UI components for mobile devices based on Vue 2.x",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.1",
+  "main": "./index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
