@@ -3,7 +3,6 @@
     <vn-button>默认按钮</vn-button>
     <vn-button icon="settings">默认按钮</vn-button>
     <vn-button :loading="true">默认按钮</vn-button>
-    <vn-button disabled>默认按钮</vn-button>
   </div>
 </template>
 
