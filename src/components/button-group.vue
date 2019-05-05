@@ -1,17 +1,17 @@
 <template>
-    <div class="g-button-group">
+    <div class="vn-button-group">
         <slot></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'NickButtonGroup',
+        name: 'VnButtonGroup',
         mounted() {
             for (let node of this.$el.children) {
                 let name = node.nodeName.toLocaleLowerCase()
                 if (name !== 'button') {
-                    console.warn(`button group 下面应该都是 g-button，你写的是${name}`)
+                    console.warn(`button group 下面应该都是 vn-button，你写的是${name}`)
                 }
             }
         }
@@ -19,10 +19,10 @@
 </script>
 
 <style lang="scss">
-    .g-button-group {
+    .vn-button-group {
         display: inline-flex;
         vertical-align: middle;
-        > .g-button {
+        > .vn-button {
             border-radius: 0;
             &:not(:first-child) {
                 margin-left: -1px;
