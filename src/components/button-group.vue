@@ -25,15 +25,16 @@
         > .vn-button {
             border-radius: 0;
             &:not(:first-child) {
-                margin-left: -1px;
+                /*不同的设备负 margin 不同，一般是这个值*/
+                margin-left: -3px;
             }
             &:first-child {
-                border-top-left-radius: var(--border-radius);
-                border-bottom-left-radius: var(--border-radius);
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
             }
             &:last-child {
-                border-top-right-radius: var(--border-radius);
-                border-bottom-right-radius: var(--border-radius);
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
             }
             &:hover {
                 position: relative;
