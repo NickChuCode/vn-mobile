@@ -36,6 +36,10 @@
                 type: Boolean,
                 default: false
             },
+            error: {
+                type: Boolean,
+                default: false
+            },
             outline: {
                 type: Boolean,
                 default: false
@@ -46,6 +50,7 @@
                 return {
                     'vn-btn-primary': this.primary,
                     'vn-btn-warn': this.warn,
+                    'vn-btn-error': this.error,
                     'vn-btn-outline': this.outline
                 }
             }
@@ -64,6 +69,9 @@
     $border-color-hover: #666;
     $primary-color: #3eaf7b;
     $primary-text: white;
+    $warn-color: #ffde6c;
+    $warn-text: #584801;
+    $error-color: #ee3757;
     @keyframes spin {
         0% {
             transform: rotate(0deg);
@@ -79,6 +87,13 @@
                 border-color: $border
             }
         }
+    }
+    @mixin Opacity($value){
+        $IEValue: $value*100;
+        //  opacity: $value;
+        background-color: rgba('', $value);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+        filter: alpha(opacity=$IEValue);
     }
     .vn-button {
         font-size: $font-size;
@@ -102,17 +117,44 @@
         &:focus {
             outline: none;
         }
+        &.vn-btn-outline {
+            background-color: rgba($button-bg, 0);
+            color: $color;
+            @include btn-active(rgba($button-bg, .2));
+        }
         &.vn-btn-primary {
             background-color: $primary-color;
             color: $primary-text;
             border-color: $primary-color;
-            @include btn-active(#4abf8a)
+            @include btn-active(#4abf8a);
+            &.vn-btn-outline {
+                background-color: rgba($primary-color, 0);
+                color: $primary-color;
+                @include btn-active(rgba($primary-color, .2));
+            }
         }
+
         &.vn-btn-warn {
-            background-color: #ffde6c;
-            color: #584801;
+            background-color: $warn-color;
+            color: $warn-text;
             border-color: #e0b509;
             @include btn-active(#fff7c7)
+            &.vn-btn-outline {
+                background-color: rgba($warn-color, 0);
+                color: $warn-text;
+                @include btn-active(#fff7c7);
+            }
+        }
+        &.vn-btn-error {
+            background-color: $error-color;
+            color: white;
+            border-color: $error-color;
+            @include btn-active(#fff7c7)
+            &.vn-btn-outline {
+                background-color: rgba($error-color, 0);
+                color: $error-color;
+                @include btn-active(rgba($error-color, .2));
+            }
         }
         > .icon {
             order: 1;

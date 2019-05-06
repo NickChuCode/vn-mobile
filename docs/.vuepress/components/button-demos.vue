@@ -2,28 +2,78 @@
     <div class="buttons">
         <div class="vpn-title"><span>按钮类型</span></div>
         <div class="vpn-content">
-            <vn-button primary>默认按钮</vn-button>
-            <vn-button icon="settings" warn>默认按钮</vn-button>
-            <vn-button :loading="true">默认按钮</vn-button>
+            <vn-button>默认按钮</vn-button>
+            <vn-button primary>成功按钮</vn-button>
+            <vn-button error>错误按钮</vn-button>
+            <vn-button warn>警告按钮</vn-button>
         </div>
+        <pre><code>{{ btnType }}</code></pre>
+        <div class="vpn-title"><span>outline</span></div>
+        <div class="vpn-content">
+            <vn-button outline>默认按钮</vn-button>
+            <vn-button primary outline>成功按钮</vn-button>
+            <vn-button error outline>错误按钮</vn-button>
+            <vn-button warn outline>警告按钮</vn-button>
+        </div>
+        <pre><code>{{ outlineBtn }}</code></pre>
+        <div class="vpn-title"><span>带图标的按钮</span></div>
+        <div class="vpn-content">
+            <vn-button icon="settings">默认按钮</vn-button>
+            <vn-button :loading="true" primary>默认按钮</vn-button>
+            <vn-button icon="settings" warn outline>默认按钮</vn-button>
+            <vn-button :loading="true" error outline>默认按钮</vn-button>
+        </div>
+        <pre><code>{{ iconBtn }}</code></pre>
+        <div class="vpn-title"><span>一组按钮</span></div>
+        <div class="vpn-content">
+            <vn-button-group>
+                <vn-button icon="left">上一个</vn-button>
+                <vn-button icon="right" iconPosition="right">下一个</vn-button>
+                <vn-button icon="settings">设置</vn-button>
+                <vn-button icon="info">信息</vn-button>
+            </vn-button-group>
+        </div>
+        <pre><code>{{ groupButton }}</code></pre>
     </div>
 </template>
 
 <script>
     import Button from '../../../src/components/button'
+    import ButtonGroup from '../../../src/components/button-group'
     export default {
         name: "button-demos",
         components: {
-            'vn-button': Button
+            'vn-button': Button,
+            'vn-button-group': ButtonGroup
         },
         data () {
             return {
-                content: `
-                <g-button>默认按钮</g-button>
-                <g-button icon="settings">默认按钮</g-button>
-                <g-button :loading="true">默认按钮</g-button>
-                <g-button disabled>默认按钮</g-button>
-                `.replace(/\t+| +/g, '').trim()
+                btnType: `
+<vn-button>默认按钮</vn-button>
+<vn-button primary>成功按钮</vn-button>
+<vn-button error>错误按钮</vn-button>
+<vn-button warn>警告按钮</vn-button>
+                `.trim(),
+                outlineBtn: `
+<vn-button outline>默认按钮</vn-button>
+<vn-button primary outline>成功按钮</vn-button>
+<vn-button error outline>错误按钮</vn-button>
+<vn-button warn outline>警告按钮</vn-button>
+                `.trim(),
+                iconBtn: `
+<vn-button icon="settings">默认按钮</vn-button>
+<vn-button :loading="true" primary>默认按钮</vn-button>
+<vn-button icon="settings" warn outline>默认按钮</vn-button>
+<vn-button :loading="true" error outline>默认按钮</vn-button>
+                `.trim(),
+                groupButton: `
+                <vn-button-group>
+                    <vn-button icon="left">上一个</vn-button>
+                    <vn-button icon="right" iconPosition="right">下一个</vn-button>
+                    <vn-button icon="settings">设置</vn-button>
+                    <vn-button icon="info">信息</vn-button>
+                </vn-button-group>
+                `.replace(/^ {16}/gm, '').trim()
             }
         }
     }

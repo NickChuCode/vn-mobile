@@ -2,9 +2,9 @@
   <div id="app">
     <div class="title"><span>按钮类型</span></div>
     <div class="content">
-      <vn-button primary>默认按钮</vn-button>
-      <vn-button icon="settings" warn>默认按钮</vn-button>
-      <vn-button :loading="true">默认按钮</vn-button>
+      <vn-button primary outline>默认按钮</vn-button>
+      <vn-button icon="settings" warn outline>默认按钮</vn-button>
+      <vn-button :loading="true" error outline>默认按钮</vn-button>
     </div>
     <div class="title"><span>按钮类型</span></div>
     <div class="content">
