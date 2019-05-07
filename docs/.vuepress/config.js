@@ -48,7 +48,8 @@ module.exports = {
             {
                 title: '组件',
                 children: [
-                    '/components/button.md'
+                    '/components/button.md',
+                    '/components/input.md'
                 ]
             }
         ]

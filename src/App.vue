@@ -1,46 +1,50 @@
 <template>
   <div id="app">
-    <div class="title"><span>按钮类型</span></div>
-    <div class="content">
-      <vn-button primary outline>默认按钮</vn-button>
-      <vn-button icon="settings" warn outline>默认按钮</vn-button>
-      <vn-button :loading="true" error outline>默认按钮</vn-button>
+    <div class="box">
+      <!--        input变，message变-->
+      <vn-input v-model="message"></vn-input>
+      <p>{{ message }}</p>
+      <!--        message变，input变-->
+      <!--        这两个合起来，就是双向绑定-->
+      <vn-button @click="message += 1">+1</vn-button>
     </div>
-    <div class="title"><span>按钮类型</span></div>
-    <div class="content">
-      <vn-button-group>
-        <vn-button primary>默认按钮</vn-button>
-        <vn-button icon="settings" warn>默认按钮</vn-button>
-        <vn-button :loading="true">默认按钮</vn-button>
-      </vn-button-group>
+    <div class="box xxx">
+      <vn-input value="张三" disabled></vn-input>
+      <!--    区别是 disabled不能focus，但是readonly可以-->
+      <vn-input value="李斯" readonly></vn-input>
+      <vn-input value="王五"></vn-input>
+    </div>
+    <div class="box">
+      <vn-input value="王" error="姓名不能少于两个字" @change="inputChange"></vn-input>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      message: '信息'
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-  .title {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 20px;
-    margin-left: 20px;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  .content {
+.box {
+  margin: 20px;
+}
+  .xxx{
+    height: 150px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    margin-bottom: 40px;
+    align-content: space-around;
   }
 </style>
