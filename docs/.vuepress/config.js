@@ -49,7 +49,8 @@ module.exports = {
                 title: '组件',
                 children: [
                     '/components/button.md',
-                    '/components/input.md'
+                    '/components/input.md',
+                    '/components/grid.md'
                 ]
             }
         ]

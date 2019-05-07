@@ -1,22 +1,25 @@
 <template>
   <div id="app">
-    <div class="box">
-      <!--        input变，message变-->
-      <vn-input v-model="message"></vn-input>
-      <p>{{ message }}</p>
-      <!--        message变，input变-->
-      <!--        这两个合起来，就是双向绑定-->
-      <vn-button @click="message += 1">+1</vn-button>
-    </div>
-    <div class="box xxx">
-      <vn-input value="张三" disabled></vn-input>
-      <!--    区别是 disabled不能focus，但是readonly可以-->
-      <vn-input value="李斯" readonly></vn-input>
-      <vn-input value="王五"></vn-input>
-    </div>
-    <div class="box">
-      <vn-input value="王" error="姓名不能少于两个字" @change="inputChange"></vn-input>
-    </div>
+    <vn-row>
+      <vn-col span="5">
+        <div class="demo">span:5</div>
+      </vn-col>
+      <vn-col span="7">
+        <div class="demo">span:7</div>
+      </vn-col>
+      <vn-col span="12">
+        <div class="demo">span:12</div>
+      </vn-col>
+      <vn-col span="6">
+        <div class="demo">span:6</div>
+      </vn-col>
+      <vn-col span="8">
+        <div class="demo">span:8</div>
+      </vn-col>
+      <vn-col span="10">
+        <div class="demo">span:10</div>
+      </vn-col>
+    </vn-row>
   </div>
 </template>
 
@@ -32,19 +35,16 @@ export default {
 </script>
 
 <style lang="scss">
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-.box {
-  margin: 20px;
-}
-  .xxx{
-    height: 150px;
+  $primary-color: #3eaf7b;
+  $primary-text: white;
+  .demo {
+    background: rgba($primary-color, .8);
+    border: 1px solid $primary-color;
+    height: 100px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: white;
   }
 </style>

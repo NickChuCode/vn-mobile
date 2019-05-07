@@ -19,7 +19,7 @@
 <script>
     import Icon from './icon'
     export default {
-        name: "NickInput", // name是用来调试的（有了自己独特的名字），也可以用来做组件之间的通信
+        name: "VnInput", // name是用来调试的（有了自己独特的名字），也可以用来做组件之间的通信
         components: {Icon},
         props: {
             value: {
