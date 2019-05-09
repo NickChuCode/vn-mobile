@@ -2,9 +2,9 @@
     <div class="vn-inputs">
         <div class="vpn-title"><span>Toast 组件</span></div>
         <div class="box">
-            <vn-button @click="showToast1">屏幕顶端弹出</vn-button>
-            <vn-button @click="showToast2">屏幕中间弹出</vn-button>
-            <vn-button @click="showToast3">屏幕底部弹出</vn-button>
+            <vn-button @click="showToast1">顶端弹出</vn-button>
+            <vn-button @click="showToast2">中间弹出</vn-button>
+            <vn-button @click="showToast3">底部弹出</vn-button>
         </div>
         <pre><code>{{ code }}</code></pre>
     </div>

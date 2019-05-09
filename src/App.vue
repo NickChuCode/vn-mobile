@@ -1,8 +1,24 @@
 <template>
   <div id="app">
-    <button @click="showToast1">top</button>
-    <button @click="showToast2">middle</button>
-    <button @click="showToast3">bottom</button>
+    <vn-tabs :selected.sync="selectedTab">
+      <!--如果下面组件中这个标签上有class，这里又给一个class，vue默认是会合并这两个class的（另一个可以这样做的属性是style），其他属性都是直接覆盖-->
+      <vn-tabs-head>
+        <!-- 这个可以选择放入组件的哪个插槽-->
+        <template slot="actions">
+          <vn-button>设置</vn-button>
+        </template>
+        <vn-tabs-item name="women" disabled>
+          <vn-icon name="settings"></vn-icon>美女
+        </vn-tabs-item>
+        <vn-tabs-item name="finance">财经</vn-tabs-item>
+        <vn-tabs-item name="sports">体育</vn-tabs-item>
+      </vn-tabs-head>
+      <vn-tabs-body>
+        <vn-tabs-pane name="women">美女相关资讯</vn-tabs-pane>
+        <vn-tabs-pane name="finance">财经相关资讯</vn-tabs-pane>
+        <vn-tabs-pane name="sports">体育相关资讯</vn-tabs-pane>
+      </vn-tabs-body>
+    </vn-tabs>
   </div>
 </template>
 
@@ -11,31 +27,7 @@ export default {
   name: 'app',
   data () {
     return {
-      message: '信息'
-    }
-  },
-  methods: {
-    showToast1 () {
-      this.showToast('top')
-    },
-    showToast2 () {
-      this.showToast('middle')
-    },
-    showToast3 () {
-      this.showToast('bottom')
-    },
-    showToast(position) {
-      this.$toast(`文字，id为${parseInt(Math.random() * 100)}`, {
-        position,
-        enableHtml: false,
-        closeButton: {
-          text: '已充值',
-          callback () {
-            console.log('已充值了！')
-          }
-        },
-        autoClose: 3
-      })
+      selectedTab: 'sports'
     }
   }
 }
