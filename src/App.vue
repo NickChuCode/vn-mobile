@@ -1,25 +1,8 @@
 <template>
   <div id="app">
-    <vn-row>
-      <vn-col span="5">
-        <div class="demo">span:5</div>
-      </vn-col>
-      <vn-col span="7">
-        <div class="demo">span:7</div>
-      </vn-col>
-      <vn-col span="12">
-        <div class="demo">span:12</div>
-      </vn-col>
-      <vn-col span="6">
-        <div class="demo">span:6</div>
-      </vn-col>
-      <vn-col span="8">
-        <div class="demo">span:8</div>
-      </vn-col>
-      <vn-col span="10">
-        <div class="demo">span:10</div>
-      </vn-col>
-    </vn-row>
+    <button @click="showToast1">top</button>
+    <button @click="showToast2">middle</button>
+    <button @click="showToast3">bottom</button>
   </div>
 </template>
 
@@ -29,6 +12,30 @@ export default {
   data () {
     return {
       message: '信息'
+    }
+  },
+  methods: {
+    showToast1 () {
+      this.showToast('top')
+    },
+    showToast2 () {
+      this.showToast('middle')
+    },
+    showToast3 () {
+      this.showToast('bottom')
+    },
+    showToast(position) {
+      this.$toast(`文字，id为${parseInt(Math.random() * 100)}`, {
+        position,
+        enableHtml: false,
+        closeButton: {
+          text: '已充值',
+          callback () {
+            console.log('已充值了！')
+          }
+        },
+        autoClose: 3
+      })
     }
   }
 }

@@ -50,7 +50,8 @@ module.exports = {
                 children: [
                     '/components/button.md',
                     '/components/input.md',
-                    '/components/grid.md'
+                    '/components/grid.md',
+                    '/components/toast.md'
                 ]
             }
         ]
