@@ -49,11 +49,11 @@
         opacity: 0;
     }
     .slide-leave-to {
-        transform: translateX(-100%) scale(0.5);
+        transform: translateX(-100%);
         opacity: 0;
     }
     .slide-leave-to.reverse {
-        transform: translateX(100%) scale(0.5);
+        transform: translateX(100%);
         opacity: 0;
     }
 </style>

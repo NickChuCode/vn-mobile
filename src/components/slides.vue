@@ -1,5 +1,5 @@
 <template>
-    <div class="vn-slides">
+    <div class="vn-slides" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
         <div class="vn-slides-window">
             <div class="vn-slides-wrapper">
                 <slot></slot>
@@ -29,12 +29,14 @@
         data () {
             return {
                 childrenLength: 0,
-                lastSelectedIndex: undefined
+                lastSelectedIndex: undefined,
+                timerId: undefined
             }
         },
         computed: {
             selectedIndex () {
-                return this.names.indexOf(this.selected) || 0
+                let index = this.names.indexOf(this.selected)
+                return index === -1 ? 0 : index
             },
             names () {
                 return this.$children.map(vm => vm.name)
@@ -52,7 +54,16 @@
             updateChildren () {
                 let selected = this.getSelected()
                 this.$children.forEach((vm) => {
-                    vm.reverse = this.selectedIndex > this.lastSelectedIndex ? false : true
+                    let reverse = this.selectedIndex > this.lastSelectedIndex ? false : true
+                    if (this.timerId) {
+                        if (this.lastSelectedIndex === this.$children.length - 1 && this.selectedIndex === 0) {
+                            reverse = false
+                        }
+                        if (this.lastSelectedIndex === 0 && this.selectedIndex === this.$children.length - 1) {
+                            reverse = true
+                        }
+                    }
+                    vm.reverse = reverse
                     this.$nextTick(() => {
                         vm.selected = selected
                     })
@@ -66,16 +77,27 @@
                 this.lastSelectedIndex = this.selectedIndex
                 this.$emit('update:selected', this.names[index])
             },
+            pause () {
+                window.clearTimeout(this.timerId)
+                this.timerId = undefined
+            },
+            onMouseEnter () {
+              this.pause()
+            },
+            onMouseLeave () {
+                this.playAutomatically()
+            },
             playAutomatically () {
+                if (this.timerId) {return}
                 let run = () => {
                     let index = this.names.indexOf(this.getSelected())
                     let newIndex = index + 1
                     if (newIndex === -1) {newIndex = this.names.length - 1}
                     if (index === this.names.length) { newIndex = 0 }
                     this.select(newIndex)
-                    setTimeout(run, 3000)
+                    this.timerId = setTimeout(run, 3000)
                 }
-                setTimeout(run, 3000)
+                this.timerId = setTimeout(run, 3000)
             }
         }
     }
@@ -86,10 +108,33 @@
         &-window {
             overflow: hidden;
         }
+        &-wrapper {
+            position: relative;
+        }
         &-dots {
+            padding: 8px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             > span {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #ddd;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 8px;
+                font-size: 12px;
+                &:hover {
+                    cursor: pointer;
+                }
                 &.active {
-                    background: red;
+                    background: black;
+                    color: white;
+                    &:hover {
+                        cursor: default;
+                    }
                 }
             }
         }
