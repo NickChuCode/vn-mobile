@@ -49,6 +49,9 @@
         width: 100%;
         height: 350px;
         background: #ddd;
-        border: 1px solid red;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
