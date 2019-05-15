@@ -1,6 +1,6 @@
 <template>
     <div class="vn-slides-demo">
-        <vn-slides :selected.sync="selected">
+        <vn-slides :selected.sync="selected" class="vn-wrapper">
             <vn-slides-item name="1">
                 <div class="box">1</div>
             </vn-slides-item>
@@ -42,9 +42,12 @@
 </script>
 
 <style scoped lang="scss">
+    .vn-wrapper {
+        margin: 40px;
+    }
     .box {
-        width: 200px;
-        height: 150px;
+        width: 100%;
+        height: 350px;
         background: #ddd;
         border: 1px solid red;
     }

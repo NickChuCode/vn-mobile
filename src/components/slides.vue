@@ -1,6 +1,16 @@
 <template>
     <div class="vn-slides">
-        <slot></slot>
+        <div class="vn-slides-window">
+            <div class="vn-slides-wrapper">
+                <slot></slot>
+            </div>
+        </div>
+        <div class="vn-slides-dots">
+            <span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1}"
+            @click="select(n-1)">
+                {{ n }}
+            </span>
+        </div>
     </div>
 </template>
 
@@ -16,32 +26,51 @@
                 default: true
             }
         },
+        data () {
+            return {
+                childrenLength: 0
+            }
+        },
+        computed: {
+            selectedIndex () {
+                return this.names.indexOf(this.selected) || 0
+            },
+            names () {
+                return this.$children.map(vm => vm.name)
+            }
+        },
         mounted() {
             this.updateChildren()
             this.playAutomatically()
+            this.childrenLength = this.$children.length
         },
         updated() {
             this.updateChildren()
         },
         methods: {
             updateChildren () {
-                let first = this.$children[0]
-                let selected = this.selected || first.name
+                let selected = this.getSelected()
                 this.$children.forEach((vm) => {
                     vm.selected = selected
+                    let newIndex = this.names.indexOf(selected)
+                    let oldIndex = this.names.indexOf(vm.name)
+                    vm.reverse = newIndex > oldIndex ? false : true
                 })
             },
             getSelected () {
                 let first = this.$children[0].name
                 return this.selected || first
             },
+            select (index) {
+                this.$emit('update:selected', this.names[index])
+            },
             playAutomatically () {
-                const names = this.$children.map(vm => vm.name)
-                let index = names.indexOf(this.getSelected())
+                let index = this.names.indexOf(this.getSelected())
                 let run = () => {
-                    if (index === names.length) { index = 0 }
-                    this.$emit('update:selected', names[index + 1])
-                    index++
+                    let newIndex = index - 1
+                    if (newIndex === -1) {newIndex = this.names.length - 1}
+                    if (index === this.names.length) { newIndex = 0 }
+                    this.$emit('update:selected', this.names[newIndex])
                     setTimeout(run, 3000)
                 }
                 setTimeout(run, 3000)
@@ -52,6 +81,15 @@
 
 <style scoped lang="scss">
     .vn-slides {
-        display: inline-block;
+        &-window {
+            overflow: hidden;
+        }
+        &-dots {
+            > span {
+                &.active {
+                    background: red;
+                }
+            }
+        }
     }
 </style>
