@@ -13,7 +13,7 @@
                 <vn-icon name="left"></vn-icon>
             </span>
             <span v-for="n in childrenLength" :class="{active: selectedIndex === n - 1}"
-            @click="select(n-1)">
+            @click="select(n-1)" :key="n" :data-index="n-1">
                 {{ n }}
             </span>
             <span @click="select(selectedIndex + 1)">
@@ -61,7 +61,9 @@
         },
         mounted() {
             this.updateChildren()
-            this.playAutomatically()
+            if (this.autoPlay) {
+                this.playAutomatically()
+            }
             this.childrenLength = this.items.length
         },
         updated() {
